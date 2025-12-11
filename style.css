@@ -17,6 +17,12 @@ body {
   background-size: cover;
   
 }
+@media (max-width: 768px) {
+  .body {
+    background-image: url("img/baner.jpg");
+    background-attachment: scroll; /* tránh bị lỗi giật trên mobile */
+    height: 60vh; /* banner ngắn hơn */
+  }
 
 .banner {
   width: 100%;
