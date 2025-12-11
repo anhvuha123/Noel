@@ -1,0 +1,190 @@
+/* ---- RESET ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  background: #0d1b2a;
+  color: white;
+  min-height: 100vh;
+  padding-bottom: 40px;
+  background-image: url("img/nento.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
+
+.banner {
+  width: 100%;
+  height: 400px;
+  background-image: url("img/baner.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* ---- SNOW ---- */
+.snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* ---- PAGE 1 (index) ---- */
+.container {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-img {
+  width: 90%;
+  max-width: 400px;
+  height: 560px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+p {
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.yes {
+  background: #ff6b81;
+  color: white;
+}
+
+.no {
+  background: white;
+  color: #ff6b81;
+  position: relative;
+}
+
+#playBtn,
+#muteBtn {
+  margin: 5px 0;
+  background: #ffd6dd;
+  color: #c6002b;
+}
+
+/* Question Box */
+.question-box {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+}
+
+.btn-wrap {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+}
+
+/* ---- PAGE 2 (choice.html) ---- */
+h1 {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.list {
+  width: 90%;
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 15px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+.item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.item label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.item input {
+  transform: scale(1.4);
+}
+
+#submitBtn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 14px;
+  background: #ff6b81;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#resultBox {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  display: none;
+}
+
+/* ---- Snowfall Animation ---- */
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(120vh); }
+}
+

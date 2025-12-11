@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noel Với Anh</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+    
+<body>
+
+<!-- Nhạc -->
+<audio id="audio" loop>
+  <source src="mp3/04 Nhạc Nền Giáng Sinh Cho Video.mp3" type="audio/mpeg">
+</audio>
+
+<div class="snow" id="snow"></div>
+
+<div class="container">
+  <div class="hero-img" style="background-image:url('https://images.unsplash.com/photo-1605902711622-cfb43c44367e?q=80&w=1600&auto=format&fit=crop');">
+    <img class="hero-img" src="img/Ảnh 1.png" alt="Hero Image">
+  </div>
+  
+
+  <h1>Đi Chơi Noel Hoi Cục Cưng ơi ❤️</h1>
+  <p>Nhưng mà 27 mới đi được nha em bé tại 26 anh báo cáo Capstone rồi 😭</p>
+
+  <button id="playBtn" class="btn">Em bấm dô đây để có nhạc noel nè ▶</button>
+  <button id="muteBtn" class="btn">Tắt nhạc</button>
+
+  <div class="question-box" id="qbox">
+    <h3>Em có muốn đi chơi cùng anh không?</h3>
+
+    <div class="btn-wrap">
+      <button class="btn yes" id="yesBtn">Cóa</button>
+      <button class="btn no" id="noBtn">Khum</button>
+    </div>
+
+    <p style="font-size:14px;margin-top:10px;opacity:0.7">
+      Bấm KHUM thử xem có bấm được hân, làm ren mà từ chối được kkkk 😆
+    </p>
+  </div>
+</div>
+
+<!-- Hộp lựa chọn ăn chơi (ban đầu ẩn) -->
+<div id="choiceBox" style="display:none; margin-top:40px; text-align:center;">
+  <h1>Em chọn muốn đi đâu & ăn gì nhé 🎄</h1>
+
+  <div class="list">
+
+    <div class="item">
+      <img src="https://media.vneconomy.vn/images/upload/2021/04/20/lotee-1531281013597799705660-54-0-629-1024-crop-1531281022669659367309.jpg" />
+      <label><input type="checkbox" value="Helio Đà Nẵng"> xem phim </label>
+    </div>
+
+    <div class="item">
+      <img src="https://png.pngtree.com/png-clipart/20210427/ourmid/pngtree-karaoke-microphone-neon-light-label-png-image_3249023.jpg" />
+      <label><input type="checkbox" value="Cầu Tình Yêu"> Hát Kara Oke</label>
+    </div>
+
+    <div class="item">
+      <img src="https://gigamall.com.vn/data/2019/05/06/09314542_logo-jollibee-500x500.jpg" />
+      <label><input type="checkbox" value="Ăn Jollibee"> Jollibee</label>
+    </div>
+
+    <div class="item">
+      <img src="https://tuctactea.com.vn/wp-content/uploads/2025/05/oolong-sua.png" />
+      <label><input type="checkbox" value="Uống TUKTAK Tea"> Túc tắc Tea</label>
+    </div>
+
+    <div class="item">
+      <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-xuc-xich-ca-vien/mi-kim-chi-xuc-xich-ca-vien-01-a.jpg" />
+      <label><input type="checkbox" value="Đi biển Mỹ Khê"> ăn mỳ cay seuol </label>
+    </div>
+
+    <div class="item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5X72X9ppytLy6xIRK3tTsOMijPuvBedMlqQ&s" />
+      <label><input type="checkbox" value="Đi biển Mỹ Khê"> ăn nhóp nhép Hội An </label>
+    </div>
+
+    <div class="item">
+      <img src="https://mms.img.susercontent.com/vn-11134513-7r98o-lsv8qhcazrnoe4@resize_ss1242x600!@crop_w1242_h600_cT" />
+      <label><input type="checkbox" value="Đi biển Mỹ Khê"> Ốc cay </label>
+    </div>
+    
+    <div class="item">
+      <img src="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482882iDj/anh-mo-ta.png" />
+      <label><input type="checkbox" value="Đi biển Mỹ Khê">Búm đậu </label>
+    </div>
+
+    <div class="item">
+      <img src="https://gigamall.com.vn/data/2019/11/26/14543217_LOGO-SPICY-BOX-500x500.jpg" />
+      <label><input type="checkbox" value="Đi biển Mỹ Khê"> Spicy box</label>
+    </div>
+
+
+    
+
+  </div>
+
+  <button id="submitBtn" class="btn">Gửi yêu cầu anh yêu chở đi ❤️</button>
+
+  <div id="resultBox"></div>
+</div>
+
+
+<script>
+  // ❄ Hiệu ứng tuyết
+  function makeSnow() {
+    const snow = document.getElementById('snow');
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement('div');
+      s.innerHTML = '❄';
+      s.style.position = 'absolute';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.fontSize = (Math.random() * 12 + 8) + 'px';
+      s.style.opacity = Math.random();
+      s.style.top = '-10%';
+      s.style.animation = `fall ${Math.random() * 5 + 5}s linear infinite`;
+      snow.appendChild(s);
+    }
+  }
+  makeSnow();
+
+  // 🎵 Nhạc
+  const audio = document.getElementById("audio");
+  document.getElementById("playBtn").onclick = () => audio.play();
+  document.getElementById("muteBtn").onclick = () => audio.paused ? audio.play() : audio.pause();
+
+  // ❌ NO chạy trốn
+  const noBtn = document.getElementById('noBtn');
+  const qbox = document.getElementById('qbox');
+
+  noBtn.addEventListener('mouseover', () => {
+    const box = qbox.getBoundingClientRect();
+    const x = Math.random() * (box.width - 80);
+    const y = Math.random() * (box.height - 40);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  });
+
+  // ✔ YES → Hiện phần chọn nơi đi
+  document.getElementById("yesBtn").onclick = () => {
+    document.getElementById("choiceBox").style.display = "block";
+
+    // Scroll xuống cho mượt
+    setTimeout(() => {
+      document.getElementById("choiceBox").scrollIntoView({ behavior: "smooth" });
+    }, 200);
+  };
+
+
+  // 📄 Gửi yêu cầu + Xuất file .txt
+  document.getElementById('submitBtn').onclick = function () {
+    const checked = [...document.querySelectorAll('input:checked')].map(c => c.value);
+    const box = document.getElementById('resultBox');
+    box.style.display = 'block';
+    box.innerHTML = '<h3>Kế hoạch của chúng ta ❤️</h3><p>' + checked.join('<br>') + '</p>';
+
+    const text = `Lựa chọn của em:\n` + checked.join("\n");
+    const blob = new Blob([text], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'ke_hoach_noel.txt';
+    link.click();
+  };
+</script>
+
+</body>
+</html>
