@@ -3,13 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Noel Với Anh</title>
+  <title>Merry christmas🎄</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
     
 <body>
+<header class="header">
+  <div class="logo">🎄Merry christmas🎄</div>
+  <nav class="nav">
+    <a href="wheel.html" class="nav-btn">🎡 Vòng quay Noel</a>
+  </nav>
+</header>
 
 <!-- Nhạc -->
 <audio id="audio" loop>
@@ -52,47 +58,47 @@
 
     <div class="item">
       <img src="https://media.vneconomy.vn/images/upload/2021/04/20/lotee-1531281013597799705660-54-0-629-1024-crop-1531281022669659367309.jpg" />
-      <label><input type="checkbox" value="Helio Đà Nẵng"> xem phim </label>
+      <label><input type="checkbox" value="- Đi xem phim"> xem phim </label>
     </div>
 
     <div class="item">
       <img src="https://png.pngtree.com/png-clipart/20210427/ourmid/pngtree-karaoke-microphone-neon-light-label-png-image_3249023.jpg" />
-      <label><input type="checkbox" value="Cầu Tình Yêu"> Hát Kara Oke</label>
+      <label><input type="checkbox" value="- Hát Kara Oke"> Hát Kara Oke</label>
     </div>
 
     <div class="item">
       <img src="https://gigamall.com.vn/data/2019/05/06/09314542_logo-jollibee-500x500.jpg" />
-      <label><input type="checkbox" value="Ăn Jollibee"> Jollibee</label>
+      <label><input type="checkbox" value="- Ăn Jollibee"> Jollibee</label>
     </div>
 
     <div class="item">
       <img src="https://tuctactea.com.vn/wp-content/uploads/2025/05/oolong-sua.png" />
-      <label><input type="checkbox" value="Uống TUKTAK Tea"> Túc tắc Tea</label>
+      <label><input type="checkbox" value="- Uống túc tắc Tea"> Túc tắc Tea</label>
     </div>
 
     <div class="item">
       <img src="https://food.ibin.vn/images/data/product/mi-kim-chi-xuc-xich-ca-vien/mi-kim-chi-xuc-xich-ca-vien-01-a.jpg" />
-      <label><input type="checkbox" value="Đi biển Mỹ Khê"> ăn mỳ cay seuol </label>
+      <label><input type="checkbox" value="- ăn mỳ cay seuol"> ăn mỳ cay seuol </label>
     </div>
 
     <div class="item">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5X72X9ppytLy6xIRK3tTsOMijPuvBedMlqQ&s" />
-      <label><input type="checkbox" value="Đi biển Mỹ Khê"> ăn nhóp nhép Hội An </label>
+      <label><input type="checkbox" value="- ăn nhóp nhép Hội An"> ăn nhóp nhép Hội An </label>
     </div>
 
     <div class="item">
       <img src="https://mms.img.susercontent.com/vn-11134513-7r98o-lsv8qhcazrnoe4@resize_ss1242x600!@crop_w1242_h600_cT" />
-      <label><input type="checkbox" value="Đi biển Mỹ Khê"> Ốc cay </label>
+      <label><input type="checkbox" value="- Ốc cay"> Ốc cay </label>
     </div>
     
     <div class="item">
       <img src="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482882iDj/anh-mo-ta.png" />
-      <label><input type="checkbox" value="Đi biển Mỹ Khê">Búm đậu </label>
+      <label><input type="checkbox" value="- Búm đậu"> Búm đậu </label>
     </div>
 
     <div class="item">
       <img src="https://gigamall.com.vn/data/2019/11/26/14543217_LOGO-SPICY-BOX-500x500.jpg" />
-      <label><input type="checkbox" value="Đi biển Mỹ Khê"> Spicy box</label>
+      <label><input type="checkbox" value="- Spicy box"> Spicy box</label>
     </div>
 
 
@@ -106,7 +112,11 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
+  (function(){
+    emailjs.init("DhBiUrmR8hp71LTlL");
+  })();
   // ❄ Hiệu ứng tuyết
   function makeSnow() {
     const snow = document.getElementById('snow');
@@ -154,19 +164,38 @@
 
 
   // 📄 Gửi yêu cầu + Xuất file .txt
-  document.getElementById('submitBtn').onclick = function () {
-    const checked = [...document.querySelectorAll('input:checked')].map(c => c.value);
-    const box = document.getElementById('resultBox');
-    box.style.display = 'block';
-    box.innerHTML = '<h3>Kế hoạch của chúng ta ❤️</h3><p>' + checked.join('<br>') + '</p>';
+document.getElementById('submitBtn').onclick = function () {
+  const checked = [...document.querySelectorAll('input:checked')].map(c => c.value);
 
-    const text = `Lựa chọn của em:\n` + checked.join("\n");
-    const blob = new Blob([text], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'ke_hoach_noel.txt';
-    link.click();
-  };
+  if (checked.length === 0) {
+    alert("Em chọn ít nhất 1 cái đi nè 🥺");
+    return;
+  }
+
+  const message = checked.join("\n");
+
+  // Hiện kết quả
+  const box = document.getElementById('resultBox');
+  box.style.display = 'block';
+  box.innerHTML = '<h3>Kế hoạch của chúng ta ❤️</h3><p>' + checked.join('<br>') + '</p>';
+
+  // GỬI MAIL
+  emailjs.send(
+    "service_qx4ft6s",
+    "template_qfqg108",
+    {
+      message: message,
+      from_name: "Noel với anh 🎄",
+      reply_to: "no-reply@gmail.com"
+    }
+  ).then(() => {
+    alert("Anh nhận được mail rồi ❤️");
+  }).catch(err => {
+    alert("Gửi mail lỗi 😭");
+    console.log(err);
+  });
+};
+
 </script>
 
 </body>

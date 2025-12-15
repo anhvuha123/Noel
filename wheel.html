@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>🎡 Vòng quay Noel</title>
+  <link rel="stylesheet" href="wheel.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">🎡 Vòng quay random</div>
+  <nav>
+    <a href="index.html" class="nav-btn" style="margin-right: 10px; z-index: 9999;">⬅ Quay lại</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <h1>Vòng quay quyết định 🎄</h1>
+
+  <textarea id="input" placeholder="Mỗi dòng là 1 lựa chọn nha em bé..."></textarea>
+
+  <!-- VÒNG QUAY -->
+  <div class="wheel-wrapper">
+    <div class="pointer">▼</div>
+    <div id="wheel" class="wheel"></div>
+  </div>
+
+  <button id="spinBtn">🎡 QUAY</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  const wheel = document.getElementById("wheel");
+  const spinBtn = document.getElementById("spinBtn");
+  const result = document.getElementById("result");
+
+  let currentRotation = 0;
+
+  function buildWheel(items) {
+  wheel.innerHTML = "";
+  const angle = 360 / items.length;
+
+  items.forEach((item, i) => {
+    const slice = document.createElement("div");
+    slice.className = "slice";
+    slice.style.transform = `rotate(${i * angle}deg)`;
+
+    const label = document.createElement("div");
+    label.className = "label";
+    label.innerText = item;
+
+    slice.appendChild(label);
+    wheel.appendChild(slice);
+  });
+}
+
+  spinBtn.onclick = function () {
+    const raw = document.getElementById("input").value.trim();
+    if (!raw) {
+      alert("Nhập lựa chọn trước đi nè 😭");
+      return;
+    }
+
+    const items = raw
+      .split("\n")
+      .map(i => i.trim())
+      .filter(i => i);
+
+    buildWheel(items);
+
+    const spin = 360 * 6 + Math.floor(Math.random() * 360);
+    currentRotation += spin;
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+    const index = Math.floor(
+      (360 - (currentRotation % 360)) / (360 / items.length)
+    ) % items.length;
+
+    setTimeout(() => {
+      result.innerHTML = `
+        💖 Kết quả là:
+        <br><br>
+        🎉 <strong>${items[index]}</strong> 🎉
+      `;
+    }, 4200);
+  };
+</script>
+
+
+
+</body>
+</html>
